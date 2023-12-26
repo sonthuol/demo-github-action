@@ -13,7 +13,7 @@ class GitHubActionApplicationTests {
 
 	@Test
 	void isTrue(){
-		Assertions.assertTrue(true);
+		Assertions.assertTrue(false);
 	}
 
 }
