@@ -28,4 +28,4 @@ jobs:
           heroku_api_key: c9e60fc6-47f2-4fbe-9444-31ac72aa31e8
           heroku_app_name: demo-github-action
           heroku_email: sonthuol240100@gmail.com
-          jdk_version: "17"
+          jdk_version: '17'
