@@ -25,6 +25,6 @@ jobs:
     - name: Deploy
       uses: akhileshns/heroku-deploy@v3.12.14
       with:
-          heroku_api_key: c9e60fc6-47f2-4fbe-9444-31ac72aa31e8
+          heroku_api_key: 8449b9ff-d45d-42f9-8756-aab91094f5f0
           heroku_app_name: demo-github-action
           heroku_email: sonthuol240100@gmail.com
