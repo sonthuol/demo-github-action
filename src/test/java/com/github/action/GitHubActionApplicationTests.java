@@ -1,5 +1,6 @@
 package com.github.action;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -8,6 +9,11 @@ class GitHubActionApplicationTests {
 
 	@Test
 	void contextLoads() {
+	}
+
+	@Test
+	void isTrue(){
+		Assertions.assertTrue(true);
 	}
 
 }
