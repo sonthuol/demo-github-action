@@ -1,5 +1,6 @@
-name: Build Spring Boot
+name: CI/CD Pipeline
 
+# Xác định sự kiện trigger cho pipeline, trong trường hợp này là push lên nhánh main
 on:
   push:
     branches: [ "main" ]
@@ -7,24 +8,34 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build_and_test:
 
     runs-on: ubuntu-latest
 
     steps:
+    # Sử dụng action "checkout" để sao copy code từ repository vào máy ảo Ubuntu
     - name: Checkout source
       uses: actions/checkout@v3
+
+    # Sử dụng action "setup-java" để setup môi trường Java
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Deploy
-      uses: akhileshns/heroku-deploy@v3.12.14
-      with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
+      
+  deploy:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        uses: akhileshns/heroku-deploy@v3.12.14
+        with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+            heroku_email: ${{secrets.HEROKU_EMAIL}}
