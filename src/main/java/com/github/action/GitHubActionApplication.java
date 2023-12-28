@@ -15,7 +15,7 @@ public class GitHubActionApplication {
 
 	@GetMapping("/hello")
 	public String hello(){
-		return "Hello";
+		return "Hello, Demo github action";
 	}
 
 }
